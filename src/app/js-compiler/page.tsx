@@ -35,8 +35,12 @@ export default function JSCompiler() {
       } else {
         setOutput("(No output)");
       }
-    } catch (e: any) {
-      setError(e.message || String(e));
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError(String(e));
+      }
     } finally {
       console.log = originalLog;
       setIsLoading(false);

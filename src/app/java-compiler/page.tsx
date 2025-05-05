@@ -35,7 +35,8 @@ export default function JavaCompiler() {
       } else {
         setOutput(data.run.stdout || "(No output)");
       }
-    } catch (e) {
+    } catch (e: unknown) {
+      console.error("Execution error:", e);
       setError("Failed to execute code. Please try again later.");
     } finally {
       setIsLoading(false);

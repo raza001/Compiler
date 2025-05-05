@@ -36,7 +36,8 @@ export default function RustCompiler() {
       } else {
         setOutput(data.run.stdout || "(No output)");
       }
-    } catch (e: any) {
+    } catch (e: unknown) {
+      console.error("Execution error:", e);
       setError("Failed to execute code. Please try again later.");
     } finally {
       setIsLoading(false);
